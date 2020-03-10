@@ -23,8 +23,8 @@ class DialogInput extends React.Component{
     let dialogStyleProps = this.props.dialogStyle || {};
     var cancelText = this.props.cancelText || 'Cancel';
     var submitText = this.props.submitText || 'Submit';
-    cancelText = (Platform.OS === 'ios')? cancelText:cancelText.toUpperCase();
-    submitText = (Platform.OS === 'ios')? submitText:submitText.toUpperCase();
+    var thirdButtonText = this.props.thirdButtonText || 'Third Button'
+
 
     return(
       <Modal
@@ -70,6 +70,14 @@ class DialogInput extends React.Component{
                     this.setState({ inputModal: '',openning: true })
                   }}>
                   <Text style={styles.btn_modal_right}>{submitText}</Text>
+                </TouchableOpacity>
+                <View style={styles.divider_btn}></View>
+                <TouchableOpacity  style={styles.touch_modal}
+                  onPress={() => {
+                    this.props.submitThirdButton(value);
+                    this.setState({ inputModal: '',openning: true })
+                  }}>
+                  <Text style={styles.btn_modal_right}>{thirdButtonText}</Text>
                 </TouchableOpacity>
               </View>
             </View>
